@@ -1,0 +1,22 @@
+.sidebar_container {
+    width: 300px;
+    height: 100vh;
+    background-color: rgb(0, 0, 255);
+    border-top: 1px solid white;
+    position: relative;
+    transition: .3s ease;
+    left: -240px;
+    .menu_item {
+        padding: 1rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        cursor: pointer;
+        &:hover {
+            background-color: rgb(61, 61, 233);
+        }
+        .menu_title {
+            color: rgb(255, 255, 255)
+        }
+    }
+}
