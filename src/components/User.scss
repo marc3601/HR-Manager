@@ -1,3 +1,4 @@
+@import "../utilities/variables";
 .user_container {
     display: flex;
     .left_container {
@@ -12,7 +13,7 @@
             width: 50px;
             height: 50px;
             background-color: rgb(204, 201, 201);
-            border: 3px solid rgb(30, 30, 200);
+            border: 3px solid $main_color;
             border-radius: 50%;
             margin-left: 1rem;
             cursor: pointer;

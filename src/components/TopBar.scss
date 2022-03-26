@@ -1,5 +1,6 @@
+@import "../utilities/variables";
 .topbar_container {
-    background-color: rgb(0, 0, 255);
+    background-color: $main_color;
     color: white;
     padding: .8rem;
     display: flex;

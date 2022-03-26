@@ -1,0 +1,14 @@
+@import "../utilities/variables";
+.menu_item {
+    padding: .8rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    &:hover {
+        background-color: $hover_color;
+    }
+    .menu_title {
+        color: rgb(255, 255, 255)
+    }
+}
