@@ -1,6 +1,6 @@
 # HR Manager
 
-Basic application to manage employes
+Basic application to manage employees
 
 ## Installation
 
