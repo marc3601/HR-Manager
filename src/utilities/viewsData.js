@@ -1,11 +1,12 @@
 import people from "../assets/people.png"
 import calendar from "../assets/calendar.png"
+import home from "../assets/home.png"
 
 // Menu items
 export const itemsData = [
-    { name: "Pracownicy", logo: people },
-    { name: "Kalendarz", logo: calendar },
-    { name: "Title3", logo: people },
-    { name: "Title4", logo: people },
+    { name: "Strona główna", logo: home, link: "/" },
+    { name: "Kalendarz", logo: calendar, link: "/calendar" },
+    { name: "Pracownicy", logo: people, link: "/employes" },
+    { name: "Title4", logo: people, link: "/link4" },
 ]
 

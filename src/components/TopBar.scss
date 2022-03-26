@@ -22,6 +22,10 @@
         .breadcrumb {
             display: flex;
             list-style: none;
+            .main_page_return {
+                color: white;
+                text-decoration: none;
+            }
             .breadcrumb-item, .breadcrumb-item-text {
                 cursor: pointer;
                 &:hover {

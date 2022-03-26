@@ -1,12 +1,12 @@
 import React from 'react'
 import "./MainSection.scss"
 import SideBar from "./SideBar"
-const MainSection = ({ bar }) => {
+const MainSection = (props) => {
     return (
         <section className='main_section'>
-            <SideBar bar={bar} />
+            <SideBar bar={props.bar} setBar={props.setBar} />
             <div className='view_section'>
-                <h1>Example text!</h1>
+                {props.children}
             </div>
         </section>
     )

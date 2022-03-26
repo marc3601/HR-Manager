@@ -1,13 +1,19 @@
 import React from 'react'
+import { Link } from "react-router-dom";
 import "./MenuItem.scss"
-const MenuItem = ({ name, logo }) => {
+const MenuItem = (props) => {
+    const hideSideMenu = () => {
+        props.bar && props.setBar(!props.bar)
+    }
     return (
-        <div className='menu_item'>
-            <div className='menu_title'><p>{name}</p></div>
-            <div className='menu_icon'>
-                <img alt='people' width={30} src={logo}></img>
+        <Link onClick={hideSideMenu} className='item_link' to={props.link}>
+            <div className='menu_item'>
+                <div className='menu_title'><p>{props.name}</p></div>
+                <div className='menu_icon'>
+                    <img alt='people' width={30} src={props.logo}></img>
+                </div>
             </div>
-        </div>
+        </Link>
     )
 }
 
