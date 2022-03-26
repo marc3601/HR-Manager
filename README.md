@@ -7,7 +7,7 @@ Basic application to manage employes
 Clone this repository and cd to the project folder:).
 
 ```bash
-npm init
+npm install
 
 npm start
 ```
