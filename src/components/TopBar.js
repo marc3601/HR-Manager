@@ -19,7 +19,7 @@ const TopBar = ({ bar, setBar }) => {
             </div>
             <nav className='breadcrumb_container'>
                 <ul className="breadcrumb">
-                    <Link className='main_page_return' to="/">
+                    <Link onClick={() => bar && setBar(!bar)} className='main_page_return' to="/">
                         <li className="breadcrumb-item">Strona główna</li>
                     </Link>
                     <li className="breadcrumb-item-secondary">

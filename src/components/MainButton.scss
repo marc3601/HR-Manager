@@ -1,0 +1,22 @@
+@import "../utilities/variables";
+.main_button {
+    padding: 1rem;
+    background-color: $main_color;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    &:hover {
+     background-color:$hover_color;
+    }
+    &:active {
+        background-color: rgb(13, 125, 230);
+    }
+    cursor: pointer;
+    .plus_sign {
+        font-size: 1.2rem;
+        font-weight: bold;
+    }
+    .button_text {
+        font-size: 1.2rem;
+    }
+}

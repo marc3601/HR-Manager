@@ -7,8 +7,3 @@ test('Napis `Strona główna` jest na stronie.', () => {
   expect(textElement).toBeInTheDocument();
 });
 
-test("Zaraz zobacze co to", () => {
-  render(<App />);
-  const smth = screen.getByText("HR Manager")
-  expect(smth).toBeInTheDocument();
-})
