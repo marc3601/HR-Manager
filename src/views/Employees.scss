@@ -1,3 +1,4 @@
+@import "../utilities/variables";
 .employees_container {
    .employees_top {
        display: flex;
@@ -12,9 +13,8 @@
    }
    .employees_main {
        padding: 1rem;
-       border-top: 2px solid rgb(122, 122, 122);
+       border-top: 2px solid $divider_color;
        .searchbox_container {
-
            .employees_search {
             padding: 1rem;
             margin-right: 1rem;
@@ -26,26 +26,6 @@
        padding: 1rem 1rem 1rem;
        .list_table {
            padding-top: 1rem;
-           max-height: 50vh;
-           overflow-y: scroll;
-        table {
-            border-collapse: collapse;
-            width: 100%;
-            td, th {
-                border: 1px solid #dddddd;
-                text-align: left;
-                padding: 8px;
-              }
-              td {
-                  padding: 1rem;
-              }
-              tr:hover {
-                  background-color: #d2f1ff;
-              }
-              tr:nth-child(even) {
-                background-color: #d2f1ff;
-              }
-          }
        }
    }
 }

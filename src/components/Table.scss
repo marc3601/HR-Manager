@@ -1,0 +1,25 @@
+@import "../utilities/variables";
+table ,tr td{
+    border-collapse: collapse;
+    width: 100%;
+    padding: .8rem;
+}
+thead {
+    color: white;
+}
+tbody {
+    display:block;
+    height:50vh;
+    overflow:auto;
+}
+thead, tbody tr {
+    display:table;
+    width:100%;
+    table-layout:fixed;
+}
+tr:nth-child(even) {
+    background-color: $table_rows;
+}
+thead {
+    background-color: $main_color;
+}

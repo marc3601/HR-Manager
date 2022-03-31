@@ -10,3 +10,40 @@ export const itemsData = [
     { name: "Title4", logo: people, link: "/link4" },
 ]
 
+//Table dummy data
+
+export const tableData = {
+    tableHead: [
+        "Name",
+        "Surname",
+        "Age",
+        "Job"
+    ],
+    tableData: [
+        [
+            "Text1a",
+            "Text2a",
+            "Text3a",
+            "Text4a"
+        ],
+        [
+            "Text1b",
+            "Text2b",
+            "Text3b",
+            "Text4b"
+        ],
+        [
+            "Text1c",
+            "Text2c",
+            "Text3c",
+            "Text4c"
+        ],
+        [
+            "Text1d",
+            "Text2d",
+            "Text3d",
+            "Text4d"
+        ],
+
+    ]
+}
