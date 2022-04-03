@@ -2,6 +2,7 @@ import people from "../assets/people.png"
 import calendar from "../assets/calendar.png"
 import home from "../assets/home.png"
 
+
 // Menu items
 export const itemsData = [
     { name: "Strona główna", logo: home, link: "/" },
@@ -20,6 +21,30 @@ export const tableData = {
         "Job"
     ],
     tableData: [
+        [
+            "Text1a",
+            "Text2a",
+            "Text3a",
+            "Text4a"
+        ],
+        [
+            "Text1b",
+            "Text2b",
+            "Text3b",
+            "Text4b"
+        ],
+        [
+            "Text1c",
+            "Text2c",
+            "Text3c",
+            "Text4c"
+        ],
+        [
+            "Text1d",
+            "Text2d",
+            "Text3d",
+            "Text4d"
+        ],
         [
             "Text1a",
             "Text2a",

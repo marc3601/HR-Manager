@@ -6,10 +6,26 @@ table ,tr td{
 }
 thead {
     color: white;
+    td {
+        cursor: pointer;
+        &:hover {
+            background-color: $hover_color;
+        }
+        .icon {
+            display: inline-block;
+            padding-left: 8px; 
+            img {
+                vertical-align: middle;
+            }   
+        }
+    }
+    .activeTab {
+        background-color: $hover_color;
+    }
 }
 tbody {
     display:block;
-    height:50vh;
+    min-height:40vh;
     overflow:auto;
 }
 thead, tbody tr {
