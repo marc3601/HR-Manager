@@ -3,20 +3,17 @@ import "./Table.scss"
 import arrowUp from "../assets/sort_up.png"
 import arrowDown from "../assets/sort_down.png"
 const Table = ({ data }) => {
+    const [tableEntries, setTableEntries] = useState(data);
     const [toogle, setToogle] = useState([])
     useEffect(() => {
-        createToogleState();
-    }, [])
-
-    const createToogleState = () => {
-        setToogle(data.tableHead.map((item, i) => (
+        setToogle(tableEntries.tableHead.map((item, i) => (
             {
                 id: i,
                 asc: false,
                 desc: false
             }
         )))
-    }
+    }, [])
 
     const setToogleState = (itemID) => {
         setToogle((prev) => (
@@ -47,17 +44,46 @@ const Table = ({ data }) => {
             return <div className='icon'><img alt='icon_up' src={arrowUp} width={15}></img></div>
         } else return <div className='icon'></div>
     }
+
+    const sortTableEntries = (columnID) => {
+        let tempArr = tableEntries.tableData;
+
+        tempArr.sort(((index) => {
+            return (a, b) => {
+                let ascending = a[index] < b[index];
+                let descening = a[index] > b[index];
+                let sortOrder = toogle[columnID]?.asc ? ascending : descening;
+                return (a[index] === b[index] ? 0 : (sortOrder ? -1 : 1));
+            };
+        })(columnID))
+        console.log(toogle[columnID]?.asc);
+        setTableEntries(prev => (
+            {
+                ...prev,
+                tableData: tempArr
+            }
+        ))
+
+    }
     return (
         <table >
             <thead>
                 <tr>
-                    {data.tableHead.map((item, i) => <td className={toogle[i]?.asc || toogle[i]?.desc ? "activeTab" : ""} key={`${i}a`} onClick={() => setToogleState(i)} >{item}{showToogleIcon(i)}</td>)}
+                    {tableEntries.tableHead.map((item, i) =>
+                        <td
+                            className={toogle[i]?.asc || toogle[i]?.desc ? "activeTab" : ""}
+                            key={`${i}a`}
+                            onClick={() => {
+                                setToogleState(i)
+                                sortTableEntries(i)
+                            }} >{item}{showToogleIcon(i)}
+                        </td>)}
                 </tr>
             </thead>
             <tbody>
-                {data.tableData.map((item, i) => (
+                {tableEntries.tableData.map((item, i) => (
                     <tr key={i}>
-                        {data.tableData[i].map((item, i) => <td key={`${i}c`}>{item}</td>)}
+                        {tableEntries.tableData[i].map((item, i) => <td key={`${i}c`}>{item}</td>)}
                     </tr>
                 ))}
             </tbody>

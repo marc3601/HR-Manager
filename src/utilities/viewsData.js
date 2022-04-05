@@ -15,59 +15,107 @@ export const itemsData = [
 
 export const tableData = {
     tableHead: [
-        "Name",
-        "Surname",
-        "Age",
-        "Job"
+        "Imię",
+        "Nazwisko",
+        "Stanowisko",
+        "Miasto"
     ],
     tableData: [
         [
-            "Text1a",
-            "Text2a",
-            "Text3a",
-            "Text4a"
+            "Marcin",
+            "Czaja",
+            "Pracownik biurowy",
+            "Pakość"
         ],
         [
-            "Text1b",
-            "Text2b",
-            "Text3b",
-            "Text4b"
+            "Andrzej",
+            "Nowak",
+            "Mechanik",
+            "Inowrocław"
         ],
         [
-            "Text1c",
-            "Text2c",
-            "Text3c",
-            "Text4c"
+            "Wojciech",
+            "Tomaszewski",
+            "Księgowy",
+            "Poznań"
         ],
         [
-            "Text1d",
-            "Text2d",
-            "Text3d",
-            "Text4d"
+            "Piotr",
+            "Kowalczyk",
+            "Negocjator",
+            "Wrocław"
         ],
         [
-            "Text1a",
-            "Text2a",
-            "Text3a",
-            "Text4a"
+            "Krzysztof",
+            "Grabowski",
+            "Serwisant",
+            "Białystok"
         ],
         [
-            "Text1b",
-            "Text2b",
-            "Text3b",
-            "Text4b"
+            "Grzegorz",
+            "Szewczyk",
+            "Planista",
+            "Opole"
         ],
         [
-            "Text1c",
-            "Text2c",
-            "Text3c",
-            "Text4c"
+            "Agnieszka",
+            "Majewska",
+            "Dietetyk",
+            "Warszawa"
         ],
         [
-            "Text1d",
-            "Text2d",
-            "Text3d",
-            "Text4d"
+            "Daniel",
+            "Kubiak",
+            "Elektryk",
+            "Szczecin"
+        ],
+        [
+            "Marcin",
+            "Czaja",
+            "Pracownik biurowy",
+            "Pakość"
+        ],
+        [
+            "Andrzej",
+            "Nowak",
+            "Mechanik",
+            "Inowrocław"
+        ],
+        [
+            "Wojciech",
+            "Tomaszewski",
+            "Księgowy",
+            "Poznań"
+        ],
+        [
+            "Piotr",
+            "Kowalczyk",
+            "Negocjator",
+            "Wrocław"
+        ],
+        [
+            "Krzysztof",
+            "Grabowski",
+            "Serwisant",
+            "Białystok"
+        ],
+        [
+            "Grzegorz",
+            "Szewczyk",
+            "Planista",
+            "Opole"
+        ],
+        [
+            "Agnieszka",
+            "Majewska",
+            "Dietetyk",
+            "Warszawa"
+        ],
+        [
+            "Daniel",
+            "Kubiak",
+            "Elektryk",
+            "Szczecin"
         ],
 
     ]
