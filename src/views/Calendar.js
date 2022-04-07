@@ -4,9 +4,9 @@ import ViewHeader from "../components/ViewHeader"
 import arrow_right from "../assets/arrow_right.png"
 import arrow_left from "../assets/arrow_left.png"
 const Calendar = () => {
-    const april_days = ["", "", "", "", 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17,
-        18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30]
     const days_off = [3, 10, 17, 24]
+    const noOfDays = 30;
+    const daysArray = new Array(noOfDays).fill(0);
     return (
         <div className='calendar_container'>
             <ViewHeader title="Kalendarz" buttonTitle="Dodaj zdarzenie" />
@@ -32,10 +32,11 @@ const Calendar = () => {
                             <div className='grid_item dayoff'>Niedziela</div>
                         </div>
                         <div className='days_numbers'>
-                            {april_days.map((item, i) => {
-                                let holidayCheck = days_off.find(element => element === item);
+                            {daysArray.map((item, i) => {
+                                let data = i + 1;
+                                let holidayCheck = days_off.find(element => element === data);
 
-                                return <div key={i} className={`grid_item_number ${holidayCheck ? "dayoff_number" : ""}`}>{item}</div>
+                                return <div onClick={() => console.log(data)} key={i} className={`grid_item_number ${holidayCheck ? "dayoff_number" : ""}`}>{data}</div>
                             })}
                         </div>
 

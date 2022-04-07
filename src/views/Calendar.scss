@@ -27,25 +27,25 @@
             .calendar_grid {
                 .days_names {
                     display: grid; 
-                    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr; 
+                    grid-template-columns: repeat(7, 1fr); 
                     grid-template-rows: 1fr; 
-                    gap: 0px 5px; 
+                    gap: 0px 0px; 
                     grid-template-areas: 
                         ". . . . . . .";
                         .grid_item {
                             padding: 1rem;
                             text-align: center;
-                            outline: 1px solid black;
                         }
                         .dayoff {
                             background-color: rgb(209, 209, 209);
                         }
+                        outline: 1px solid $main_color;
                 }
                 .days_numbers {
                     display: grid; 
-                    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr; 
-                    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr; 
-                    gap: 5px 5px; 
+                    grid-template-columns: repeat(7, 1fr); 
+                    grid-template-rows: repeat(1,1fr); 
+                    gap: 0px 0px; 
                     grid-template-areas: 
                         ". . . . . . ."
                         ". . . . . . ."
@@ -56,12 +56,14 @@
                         .grid_item_number {
                             padding: 1rem;
                             text-align: center;
-                            outline: 1px solid black;
                             font-size: 2rem;
                             cursor: pointer;
                             &:hover {
                                 background-color: $hover_color;
                                 color: white;
+                            }
+                            &:first-child {
+                                grid-column: 5;
                             }
                         }
                         .dayoff_number {
