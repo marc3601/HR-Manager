@@ -1,16 +1,5 @@
 @import "../utilities/variables";
 .employees_container {
-   .employees_top {
-       display: flex;
-       justify-content: space-between;
-       align-items: center;
-       padding-bottom: 1rem;
-       .employees_title_section {
-           .employees_title {
-               font-size: 2rem;
-           }
-       }
-   }
    .employees_main {
        padding: 1rem;
        border-top: 2px solid $divider_color;

@@ -1,0 +1,78 @@
+@import "../utilities/variables";
+.calendar_container {
+    .calendar_main {
+        padding: 1rem;
+        border-top: 2px solid $divider_color;
+        .calendar {
+            width: 100%;
+            border-radius: 10px;
+            margin-top: 1rem;
+            outline: 1px solid $main_color;
+            .calendar_month {
+                padding: 1rem;
+                display: flex;
+                align-items: center;
+                border-top-left-radius: 10px;
+                border-top-right-radius: 10px;
+                justify-content: space-between;
+                background-color: $main_color;
+                color: white;
+                .month_left, .month_right {
+                    cursor: pointer;
+                }
+                .month_name {
+                    text-align: center;
+                }
+            }
+            .calendar_grid {
+                .days_names {
+                    display: grid; 
+                    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr; 
+                    grid-template-rows: 1fr; 
+                    gap: 0px 5px; 
+                    grid-template-areas: 
+                        ". . . . . . .";
+                        .grid_item {
+                            padding: 1rem;
+                            text-align: center;
+                            outline: 1px solid black;
+                        }
+                        .dayoff {
+                            background-color: rgb(209, 209, 209);
+                        }
+                }
+                .days_numbers {
+                    display: grid; 
+                    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr; 
+                    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr; 
+                    gap: 5px 5px; 
+                    grid-template-areas: 
+                        ". . . . . . ."
+                        ". . . . . . ."
+                        ". . . . . . ."
+                        ". . . . . . ."
+                        ". . . . . . ."
+                        ". . . . . . .";
+                        .grid_item_number {
+                            padding: 1rem;
+                            text-align: center;
+                            outline: 1px solid black;
+                            font-size: 2rem;
+                            cursor: pointer;
+                            &:hover {
+                                background-color: $hover_color;
+                                color: white;
+                            }
+                        }
+                        .dayoff_number {
+                            color: red;
+                            font-size: 2rem;
+                        }
+                       
+                }
+             
+            }
+                 
+        }
+    }
+}
