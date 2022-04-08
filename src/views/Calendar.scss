@@ -1,4 +1,5 @@
 @import "../utilities/variables";
+$initial_day: 1;
 .calendar_container {
     .calendar_main {
         padding: 1rem;
@@ -17,7 +18,8 @@
                 justify-content: space-between;
                 background-color: $main_color;
                 color: white;
-                .month_left, .month_right {
+                .month_left,
+                .month_right {
                     cursor: pointer;
                 }
                 .month_name {
@@ -26,55 +28,59 @@
             }
             .calendar_grid {
                 .days_names {
-                    display: grid; 
-                    grid-template-columns: repeat(7, 1fr); 
-                    grid-template-rows: 1fr; 
-                    gap: 0px 0px; 
-                    grid-template-areas: 
-                        ". . . . . . .";
-                        .grid_item {
-                            padding: 1rem;
-                            text-align: center;
-                        }
-                        .dayoff {
-                            background-color: rgb(209, 209, 209);
-                        }
-                        outline: 1px solid $main_color;
+                    display: grid;
+                    grid-template-columns: repeat(7, 1fr);
+                    grid-template-rows: 1fr;
+                    gap: 0px 0px;
+                    grid-template-areas: ". . . . . . .";
+                    .grid_item {
+                        padding: 1rem;
+                        text-align: center;
+                    }
+                    .dayoff {
+                        background-color: rgb(209, 209, 209);
+                    }
+                    outline: 1px solid $main_color;
                 }
                 .days_numbers {
-                    display: grid; 
-                    grid-template-columns: repeat(7, 1fr); 
-                    grid-template-rows: repeat(1,1fr); 
-                    gap: 0px 0px; 
-                    grid-template-areas: 
+                    display: grid;
+                    grid-template-columns: repeat(7, 1fr);
+                    grid-template-rows: repeat(1, 1fr);
+                    gap: 0px 0px;
+                    grid-template-areas:
                         ". . . . . . ."
                         ". . . . . . ."
                         ". . . . . . ."
                         ". . . . . . ."
                         ". . . . . . ."
                         ". . . . . . .";
-                        .grid_item_number {
-                            padding: 1rem;
-                            text-align: center;
-                            font-size: 2rem;
-                            cursor: pointer;
-                            &:hover {
-                                background-color: $hover_color;
-                                color: white;
-                            }
-                            &:first-child {
-                                grid-column: 5;
-                            }
+                    .grid_item_number {
+                        padding: 1rem;
+                        text-align: center;
+                        font-size: 2rem;
+                        cursor: pointer;
+                        &:hover {
+                            background-color: $hover_color;
+                            color: white;
                         }
-                        .dayoff_number {
-                            color: red;
-                            font-size: 2rem;
+                    }
+                    @for $initial_day from 1 through 7 {
+                        .initial_day_#{$initial_day}:first-child {
+                            grid-column: $initial_day;
                         }
-                       
+                    }
+
+                    .today {
+                        outline: 3px solid red;
+                        background-color: rgb(196, 235, 248);
+                    }
+
+                    .dayoff_number {
+                        color: red;
+                        font-size: 2rem;
+                    }
                 }
-             
             }
-                 
         }
     }
 }

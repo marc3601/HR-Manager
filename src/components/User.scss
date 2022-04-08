@@ -2,11 +2,11 @@
 .user_container {
     display: flex;
     .left_container {
-       display: flex;
-       align-items: flex-end; 
-       .user_data {
-           text-align: right;
-       }
+        display: flex;
+        align-items: flex-end;
+        .user_data {
+            text-align: right;
+        }
     }
     .right_container {
         .profile_pic {
