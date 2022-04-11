@@ -9,7 +9,6 @@ $initial_day: 1;
             border-radius: 10px;
             margin-top: 1rem;
             outline: 1px solid $main_color;
-            overflow: hidden;
             .calendar_month {
                 padding: 1rem;
                 display: flex;
@@ -59,26 +58,28 @@ $initial_day: 1;
                         ". . . . . . .";
                     .grid_item_number {
                         position: relative;
-                        z-index: 1;
                         padding: 1rem;
                         text-align: center;
                         font-size: 2rem;
                         cursor: pointer;
-
-                        .context_menu {
-                            position: absolute;
-                            z-index: 2 !important;
-                            width: 200px;
-                            background-color: rgb(228, 15, 15);
-                            padding: 1rem;
-                            .context_menu_list {
-                                font-size: 1rem;
-                                list-style: none;
-                            }
-                        }
                         &:hover {
                             background-color: $hover_color;
                             color: white;
+                        }
+                        .context_menu {
+                            position: absolute;
+                            z-index: 2;
+                            width: 200px;
+                            background-color: $main_color;
+                            padding: 1rem;
+                            color: white;
+                            .context_menu_list {
+                                font-size: 1rem;
+                                list-style: none;
+                                li {
+                                    margin: 0.5rem 0;
+                                }
+                            }
                         }
                     }
                     @for $initial_day from 1 through 7 {

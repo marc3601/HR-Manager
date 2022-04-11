@@ -96,37 +96,42 @@ const Calendar = () => {
                                             let rect = e.target.getBoundingClientRect();
                                             let x = e.clientX - rect.left;
                                             let y = e.clientY - rect.top;
-
-
-                                            console.log(e.currentTarget.id);
                                             setContextMenu((prev) => {
                                                 return {
                                                     show: !prev.show,
                                                     targetID: e.target.id ? parseInt(e.target.id) : 0,
-                                                    cord: { x, y }
-                                                }
-                                            })
+                                                    cord: { x, y },
+                                                };
+                                            });
                                         }}
                                         onClick={(e) => console.log(e.currentTarget.id)}
                                         key={i}
                                         id={i}
                                         className={`grid_item_number initial_day_${months[currentMonth].intialDay
-                                            } ${data === getCurrentDay(currentMonth, getCurrentMonth()) ?
-                                                "today" : ""
+                                            } ${data === getCurrentDay(currentMonth, getCurrentMonth())
+                                                ? "today"
+                                                : ""
                                             }  ${holidayCheck ? "dayoff_number" : ""}`}
                                     >
                                         {data}{" "}
-                                        {contextMenu.show && contextMenu.targetID === i && <div style={{ left: `${contextMenu.cord.x}px`, top: `${contextMenu.cord.y}px` }} className="context_menu">
-                                            <ul className="context_menu_list">
-                                                <li>{`Day of month: ${i + 1}`}</li>
-                                                <li>Menu option no 1</li>
-                                                <li>Menu option no 1</li>
-                                                <li>Menu option no 1</li>
-                                                <li>Menu option no 1</li>
-                                                <li>Menu option no 1</li>
-                                            </ul>
-
-                                        </div>}
+                                        {contextMenu.show && contextMenu.targetID === i && (
+                                            <div
+                                                style={{
+                                                    left: `${contextMenu.cord.x}px`,
+                                                    top: `${contextMenu.cord.y}px`,
+                                                }}
+                                                className="context_menu"
+                                            >
+                                                <ul className="context_menu_list">
+                                                    <li>{`Day of month: ${i + 1}`}</li>
+                                                    <li>{months[currentMonth].name}</li>
+                                                    <li>Menu option no 2</li>
+                                                    <li>Menu option no 3</li>
+                                                    <li>Menu option no 4</li>
+                                                    <li>Menu option no 5</li>
+                                                </ul>
+                                            </div>
+                                        )}
                                     </div>
                                 );
                             })}{" "}
