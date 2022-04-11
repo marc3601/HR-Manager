@@ -7,8 +7,15 @@ import { months, getCurrentMonth, getCurrentDay } from "../utilities/viewsData";
 import useEventListener from "../utilities/useEventListener";
 const Calendar = () => {
     const [currentMonth, setCurrentMonth] = useState(getCurrentMonth());
+    const [contextMenu, setContextMenu] = useState({
+        show: false,
+        targetID: 0,
+        cord: { x: 0, y: 0 },
+    });
+
     const Arrows = ["39", "ArrowRight", "37", "ArrowLeft"];
-    function keyPressHandler({ key }) {
+
+    const keyPressHandler = ({ key }) => {
         if (Arrows.includes(String(key))) {
             if (key === "ArrowRight") {
                 nextMonth();
@@ -16,7 +23,7 @@ const Calendar = () => {
                 previousMonth();
             }
         }
-    }
+    };
 
     const daysArray = new Array(months[currentMonth].noOfDays).fill(0);
 
@@ -84,14 +91,42 @@ const Calendar = () => {
 
                                 return (
                                     <div
-                                        onClick={() => console.log(data)}
+                                        onContextMenu={(e) => {
+                                            e.preventDefault();
+                                            let rect = e.target.getBoundingClientRect();
+                                            let x = e.clientX - rect.left;
+                                            let y = e.clientY - rect.top;
+
+
+                                            console.log(e.currentTarget.id);
+                                            setContextMenu((prev) => {
+                                                return {
+                                                    show: !prev.show,
+                                                    targetID: e.target.id ? parseInt(e.target.id) : 0,
+                                                    cord: { x, y }
+                                                }
+                                            })
+                                        }}
+                                        onClick={(e) => console.log(e.currentTarget.id)}
                                         key={i}
+                                        id={i}
                                         className={`grid_item_number initial_day_${months[currentMonth].intialDay
-                                            } ${data === getCurrentDay(currentMonth, getCurrentMonth()) &&
-                                            "today"
+                                            } ${data === getCurrentDay(currentMonth, getCurrentMonth()) ?
+                                                "today" : ""
                                             }  ${holidayCheck ? "dayoff_number" : ""}`}
                                     >
                                         {data}{" "}
+                                        {contextMenu.show && contextMenu.targetID === i && <div style={{ left: `${contextMenu.cord.x}px`, top: `${contextMenu.cord.y}px` }} className="context_menu">
+                                            <ul className="context_menu_list">
+                                                <li>{`Day of month: ${i + 1}`}</li>
+                                                <li>Menu option no 1</li>
+                                                <li>Menu option no 1</li>
+                                                <li>Menu option no 1</li>
+                                                <li>Menu option no 1</li>
+                                                <li>Menu option no 1</li>
+                                            </ul>
+
+                                        </div>}
                                     </div>
                                 );
                             })}{" "}
