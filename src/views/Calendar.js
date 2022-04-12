@@ -123,8 +123,8 @@ const Calendar = () => {
                                                 className="context_menu"
                                             >
                                                 <ul className="context_menu_list">
-                                                    <li>{`Day of month: ${i + 1}`}</li>
-                                                    <li>{months[currentMonth].name}</li>
+                                                    <li>{"Zaznaczona data:"}</li>
+                                                    <li>{`${i + 1} ${months[currentMonth].name}`}</li>
                                                     <li>Menu option no 2</li>
                                                     <li>Menu option no 3</li>
                                                     <li>Menu option no 4</li>

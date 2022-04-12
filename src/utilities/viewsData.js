@@ -51,17 +51,17 @@ export const months = [
     {
         name: "Styczeń 2022",
         noOfDays: 31,
-        intialDay: 7,
+        intialDay: 6,
     },
     {
         name: "Luty 2022",
         noOfDays: 28,
-        intialDay: 3,
+        intialDay: 2,
     },
     {
         name: "Marzec 2022",
         noOfDays: 31,
-        intialDay: 3,
+        intialDay: 2,
     },
     {
         name: "Kwiecień 2022",
