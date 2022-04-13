@@ -9,7 +9,6 @@ $initial_day: 1;
             border-radius: 10px;
             margin-top: 1rem;
             outline: 1px solid $main_color;
-            overflow: hidden;
             .calendar_month {
                 padding: 1rem;
                 display: flex;
@@ -45,6 +44,8 @@ $initial_day: 1;
                 }
                 .days_numbers {
                     display: grid;
+                    position: relative;
+                    z-index: 0;
                     grid-template-columns: repeat(7, 1fr);
                     grid-template-rows: repeat(1, 1fr);
                     gap: 0px 0px;
@@ -56,6 +57,7 @@ $initial_day: 1;
                         ". . . . . . ."
                         ". . . . . . .";
                     .grid_item_number {
+                        position: relative;
                         padding: 1rem;
                         text-align: center;
                         font-size: 2rem;
