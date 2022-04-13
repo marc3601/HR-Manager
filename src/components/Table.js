@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./Table.scss";
 import arrowUp from "../assets/sort_up.png";
 import arrowDown from "../assets/sort_down.png";
+
 const Table = ({ data }) => {
     const [tableEntries, setTableEntries] = useState(data);
     const [toogle, setToogle] = useState([]);
@@ -34,6 +35,8 @@ const Table = ({ data }) => {
             })
         );
     };
+
+
 
     const showToogleIcon = (itemID) => {
         if (!toogle[itemID]?.asc && !toogle[itemID]?.desc) {
