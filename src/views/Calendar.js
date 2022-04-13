@@ -5,6 +5,7 @@ import arrow_right from "../assets/arrow_right.png";
 import arrow_left from "../assets/arrow_left.png";
 import { months, getCurrentMonth, getCurrentDay } from "../utilities/viewsData";
 import useEventListener from "../utilities/useEventListener";
+import ContextMenu from "../components/ContextMenu";
 const Calendar = () => {
     const [currentMonth, setCurrentMonth] = useState(getCurrentMonth());
     const [contextMenu, setContextMenu] = useState({
@@ -42,6 +43,11 @@ const Calendar = () => {
     };
 
     const previousMonth = () => {
+        setContextMenu({
+            show: false,
+            targetID: 0,
+            cord: { x: 0, y: 0 },
+        });
         setCurrentMonth((prev) => {
             if (currentMonth > 0 && currentMonth <= 11) {
                 return (prev -= 1);
@@ -50,10 +56,29 @@ const Calendar = () => {
     };
 
     const nextMonth = () => {
+        setContextMenu({
+            show: false,
+            targetID: 0,
+            cord: { x: 0, y: 0 },
+        });
         setCurrentMonth((prev) => {
             if (currentMonth >= 0 && currentMonth < 11) {
                 return (prev += 1);
             } else return prev;
+        });
+    };
+
+    const showContextMenu = (e) => {
+        e.preventDefault();
+        let rect = e.target.getBoundingClientRect();
+        let x = e.clientX - rect.left;
+        let y = e.clientY - rect.top;
+        setContextMenu((prev) => {
+            return {
+                show: !prev.show,
+                targetID: e.target.id ? parseInt(e.target.id) : 0,
+                cord: { x, y },
+            };
         });
     };
 
@@ -91,20 +116,7 @@ const Calendar = () => {
 
                                 return (
                                     <div
-                                        onContextMenu={(e) => {
-                                            e.preventDefault();
-                                            let rect = e.target.getBoundingClientRect();
-                                            let x = e.clientX - rect.left;
-                                            let y = e.clientY - rect.top;
-                                            setContextMenu((prev) => {
-                                                return {
-                                                    show: !prev.show,
-                                                    targetID: e.target.id ? parseInt(e.target.id) : 0,
-                                                    cord: { x, y },
-                                                };
-                                            });
-                                        }}
-                                        onClick={(e) => console.log(e.currentTarget.id)}
+                                        onContextMenu={(e) => showContextMenu(e)}
                                         key={i}
                                         id={i}
                                         className={`grid_item_number initial_day_${months[currentMonth].intialDay
@@ -115,22 +127,13 @@ const Calendar = () => {
                                     >
                                         {data}{" "}
                                         {contextMenu.show && contextMenu.targetID === i && (
-                                            <div
-                                                style={{
-                                                    left: `${contextMenu.cord.x}px`,
-                                                    top: `${contextMenu.cord.y}px`,
-                                                }}
-                                                className="context_menu"
-                                            >
-                                                <ul className="context_menu_list">
-                                                    <li>{"Zaznaczona data:"}</li>
-                                                    <li>{`${i + 1} ${months[currentMonth].name}`}</li>
-                                                    <li>Menu option no 2</li>
-                                                    <li>Menu option no 3</li>
-                                                    <li>Menu option no 4</li>
-                                                    <li>Menu option no 5</li>
-                                                </ul>
-                                            </div>
+                                            <ContextMenu
+                                                contextMenu={contextMenu}
+                                                setContextMenu={setContextMenu}
+                                                i={i}
+                                                months={months}
+                                                currentMonth={currentMonth}
+                                            />
                                         )}
                                     </div>
                                 );
