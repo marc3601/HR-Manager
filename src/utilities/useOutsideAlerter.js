@@ -1,19 +1,17 @@
 import { useEffect } from "react";
+import { useDispatch } from "react-redux";
 
-export default function useOutsideAlerter(wrapperRef, setContextMenu) {
+export default function useOutsideAlerter(wrapperRef, hideContextMenu) {
+    const dispatch = useDispatch();
     useEffect(() => {
         function handleClickOutside(event) {
             if (wrapperRef.current && !wrapperRef.current.contains(event.target)) {
-                setContextMenu({
-                    show: false,
-                    targetID: 0,
-                    cord: { x: 0, y: 0 },
-                });
+                dispatch(hideContextMenu());
             }
         }
         document.addEventListener("mousedown", handleClickOutside);
         return () => {
             document.removeEventListener("mousedown", handleClickOutside);
         };
-    }, [wrapperRef, setContextMenu]);
+    });
 }

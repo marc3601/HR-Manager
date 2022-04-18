@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import "./Table.scss";
 import arrowUp from "../assets/sort_up.png";
 import arrowDown from "../assets/sort_down.png";
-import { useSelector, useDispatch } from "react-redux";
 import { setTableState, sortTable } from "../features/tableSortSlice";
 
 const Table = ({ data }) => {
@@ -13,7 +13,7 @@ const Table = ({ data }) => {
         if (initialTableState.length === 0) {
             dispatch(setTableState(tableEntries.tableHead.length));
         }
-    }, []);
+    });
 
     const setToogleState = (itemID) => {
         dispatch(sortTable(itemID));

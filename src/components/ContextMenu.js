@@ -1,16 +1,19 @@
 import React, { useRef } from "react";
+import { useSelector } from "react-redux";
 import "./ContextMenu.scss";
 import useOutsideAlerter from "../utilities/useOutsideAlerter";
+import { hideContextMenu } from "../features/calendarContextSlice";
 const ContextMenu = (props) => {
     const wrapperRef = useRef();
-    let { contextMenu, setContextMenu, i, months, currentMonth } = props;
-    useOutsideAlerter(wrapperRef, setContextMenu);
+    const calendarContext = useSelector((state) => state.calendar_context);
+    let { i, months, currentMonth } = props;
+    useOutsideAlerter(wrapperRef, hideContextMenu);
     return (
         <div
             ref={wrapperRef}
             style={{
-                left: `${contextMenu.cord.x}px`,
-                top: `${contextMenu.cord.y}px`,
+                left: `${calendarContext.cord.x}px`,
+                top: `${calendarContext.cord.y}px`,
             }}
             className="context_menu"
         >
