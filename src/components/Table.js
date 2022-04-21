@@ -1,50 +1,40 @@
 import React, { useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import "./Table.scss";
 import arrowUp from "../assets/sort_up.png";
 import arrowDown from "../assets/sort_down.png";
+import { setTableState, sortTable } from "../features/tableSortSlice";
+
 const Table = ({ data }) => {
     const [tableEntries, setTableEntries] = useState(data);
-    const [toogle, setToogle] = useState([]);
+    const dispatch = useDispatch();
+    const initialTableState = useSelector((state) => state.table_sort);
     useEffect(() => {
-        setToogle(
-            tableEntries.tableHead.map((item, i) => ({
-                id: i,
-                asc: false,
-                desc: false,
-            }))
-        );
-    }, []);
+        if (initialTableState.length === 0) {
+            dispatch(setTableState(tableEntries.tableHead.length));
+        }
+    });
 
     const setToogleState = (itemID) => {
-        setToogle((prev) =>
-            prev.map((item, i) => {
-                if (i === itemID) {
-                    if (!item.asc && !item.desc) {
-                        return { ...item, asc: !item.asc, desc: item.desc };
-                    } else if ((item.asc && !item.desc) || (!item.asc && item.desc)) {
-                        return { ...item, asc: !item.asc, desc: !item.desc };
-                    }
-                    return item;
-                } else
-                    return {
-                        ...item,
-                        asc: false,
-                        desc: false,
-                    };
-            })
-        );
+        dispatch(sortTable(itemID));
     };
 
     const showToogleIcon = (itemID) => {
-        if (!toogle[itemID]?.asc && !toogle[itemID]?.desc) {
+        if (!initialTableState[itemID]?.asc && !initialTableState[itemID]?.desc) {
             return <div className="icon"></div>;
-        } else if (!toogle[itemID]?.asc || toogle[itemID]?.desc) {
+        } else if (
+            !initialTableState[itemID]?.asc ||
+            initialTableState[itemID]?.desc
+        ) {
             return (
                 <div className="icon">
                     <img alt="icon_down" src={arrowDown} width={15}></img>
                 </div>
             );
-        } else if (toogle[itemID]?.asc || !toogle[itemID]?.desc) {
+        } else if (
+            initialTableState[itemID]?.asc ||
+            !initialTableState[itemID]?.desc
+        ) {
             return (
                 <div className="icon">
                     <img alt="icon_up" src={arrowUp} width={15}></img>
@@ -61,7 +51,9 @@ const Table = ({ data }) => {
                 return (a, b) => {
                     let ascending = a[index] < b[index];
                     let descening = a[index] > b[index];
-                    let sortOrder = toogle[columnID]?.asc ? ascending : descening;
+                    let sortOrder = initialTableState[columnID]?.asc
+                        ? ascending
+                        : descening;
                     return a[index] === b[index] ? 0 : sortOrder ? -1 : 1;
                 };
             })(columnID)
@@ -77,7 +69,11 @@ const Table = ({ data }) => {
                 <tr>
                     {tableEntries.tableHead.map((item, i) => (
                         <td
-                            className={toogle[i]?.asc || toogle[i]?.desc ? "activeTab" : ""}
+                            className={
+                                initialTableState[i]?.asc || initialTableState[i]?.desc
+                                    ? "activeTab"
+                                    : ""
+                            }
                             key={`${i}a`}
                             onClick={() => {
                                 setToogleState(i);

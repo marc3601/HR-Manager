@@ -1,10 +1,13 @@
 import React from "react";
 import { useLocation, Link } from "react-router-dom";
+import { useSelector, useDispatch } from 'react-redux'
+import { invert } from "../features/sideMenuSlice";
 import "./TopBar.scss";
 import { itemsData } from "../utilities/viewsData";
-const TopBar = ({ bar, setBar }) => {
+const TopBar = () => {
+    const menuBar = useSelector((state) => state.side_menu)
+    const dispatch = useDispatch()
     const location = useLocation();
-
     const viewTitleFilter = itemsData.filter(
         (item) => item.link === location.pathname
     );
@@ -13,7 +16,7 @@ const TopBar = ({ bar, setBar }) => {
     return (
         <div className="topbar_container">
             <div className="burger_menu">
-                <div onClick={() => setBar(!bar)} className="burger">
+                <div onClick={() => dispatch(invert())} className="burger">
                     <div className="bar1"></div>
                     <div className="bar2"></div>
                     <div className="bar3"></div>
@@ -22,7 +25,7 @@ const TopBar = ({ bar, setBar }) => {
             <nav className="breadcrumb_container">
                 <ul className="breadcrumb">
                     <Link
-                        onClick={() => bar && setBar(!bar)}
+                        onClick={() => menuBar && dispatch(invert())}
                         className="main_page_return"
                         to="/"
                     >

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import "./Calendar.scss";
 import ViewHeader from "../components/ViewHeader";
 import arrow_right from "../assets/arrow_right.png";
@@ -6,14 +7,14 @@ import arrow_left from "../assets/arrow_left.png";
 import { months, getCurrentMonth, getCurrentDay } from "../utilities/viewsData";
 import useEventListener from "../utilities/useEventListener";
 import ContextMenu from "../components/ContextMenu";
+import {
+    hideContextMenu,
+    toogleContextMenu,
+} from "../features/calendarContextSlice";
 const Calendar = () => {
     const [currentMonth, setCurrentMonth] = useState(getCurrentMonth());
-    const [contextMenu, setContextMenu] = useState({
-        show: false,
-        targetID: 0,
-        cord: { x: 0, y: 0 },
-    });
-
+    const dispatch = useDispatch();
+    const calendarContext = useSelector((state) => state.calendar_context);
     const Arrows = ["39", "ArrowRight", "37", "ArrowLeft"];
 
     const keyPressHandler = ({ key }) => {
@@ -43,11 +44,7 @@ const Calendar = () => {
     };
 
     const previousMonth = () => {
-        setContextMenu({
-            show: false,
-            targetID: 0,
-            cord: { x: 0, y: 0 },
-        });
+        dispatch(hideContextMenu());
         setCurrentMonth((prev) => {
             if (currentMonth > 0 && currentMonth <= 11) {
                 return (prev -= 1);
@@ -56,11 +53,7 @@ const Calendar = () => {
     };
 
     const nextMonth = () => {
-        setContextMenu({
-            show: false,
-            targetID: 0,
-            cord: { x: 0, y: 0 },
-        });
+        dispatch(hideContextMenu());
         setCurrentMonth((prev) => {
             if (currentMonth >= 0 && currentMonth < 11) {
                 return (prev += 1);
@@ -73,13 +66,8 @@ const Calendar = () => {
         let rect = e.target.getBoundingClientRect();
         let x = e.clientX - rect.left;
         let y = e.clientY - rect.top;
-        setContextMenu((prev) => {
-            return {
-                show: !prev.show,
-                targetID: e.target.id ? parseInt(e.target.id) : 0,
-                cord: { x, y },
-            };
-        });
+        let id = e.target.id;
+        dispatch(toogleContextMenu({ targetID: id, cord: { x: x, y: y } }));
     };
 
     return (
@@ -126,10 +114,8 @@ const Calendar = () => {
                                             }  ${holidayCheck ? "dayoff_number" : ""}`}
                                     >
                                         {data}{" "}
-                                        {contextMenu.show && contextMenu.targetID === i && (
+                                        {calendarContext.show && calendarContext.targetID === i && (
                                             <ContextMenu
-                                                contextMenu={contextMenu}
-                                                setContextMenu={setContextMenu}
                                                 i={i}
                                                 months={months}
                                                 currentMonth={currentMonth}
