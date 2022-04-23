@@ -12,13 +12,14 @@
     .context_menu_list {
         font-size: 1rem;
         list-style: none;
+        text-align: left;
         li {
-            padding: 0.5rem;
+            padding:0.8rem 1rem;
             &:hover {
                 background-color: $hover_color;
             }
             &:first-child {
-                background-color: rgb(0, 68, 255);
+                background-color: rgb(1, 33, 120);
             }
         }
     }

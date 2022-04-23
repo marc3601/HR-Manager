@@ -6,9 +6,10 @@ import { hideContextMenu } from "../features/calendarContextSlice";
 const ContextMenu = (props) => {
   const wrapperRef = useRef();
   const calendarContext = useSelector((state) => state.calendar_context);
-  const currentM = useSelector((state) => state.current_month);
-  let { i, months } = props;
+
+  let { settings } = props;
   useOutsideAlerter(wrapperRef, hideContextMenu);
+
   return (
     <div
       ref={wrapperRef}
@@ -19,12 +20,10 @@ const ContextMenu = (props) => {
       className="context_menu"
     >
       <ul className="context_menu_list">
-        <li>{"Zaznaczona data:"}</li>
-        <li>{`${i + 1} ${months[currentM].name}`}</li>
-        <li>Menu option no 2</li>
-        <li>Menu option no 3</li>
-        <li>Menu option no 4</li>
-        <li>Menu option no 5</li>
+        <li>{settings.title}</li>
+        {settings.options.map((item, i) => (
+          <li key={i}>{item}</li>
+        ))}
       </ul>
     </div>
   );
