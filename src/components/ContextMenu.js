@@ -1,24 +1,40 @@
-import React, { useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import { useSelector } from "react-redux";
 import "./ContextMenu.scss";
 import useOutsideAlerter from "../utilities/useOutsideAlerter";
 import { hideContextMenu } from "../features/calendarContextSlice";
 const ContextMenu = (props) => {
-  const wrapperRef = useRef();
   const calendarContext = useSelector((state) => state.calendar_context);
 
-  let { settings } = props;
-  useOutsideAlerter(wrapperRef, hideContextMenu);
+  const wrapperRef = useRef();
+  const { settings, contextPosition, setContextPosition } = props;
 
-  return (
-    <div
-      ref={wrapperRef}
-      style={{
+  useEffect(() => {
+    const rect = wrapperRef.current.getBoundingClientRect();
+    setContextPosition(() => {
+      if (window.innerWidth <= rect.right) {
+        return {
+          right: `0px`,
+          top: `${calendarContext.cord.y}px`,
+        };
+      } else if (window.innerWidth > rect.right)
+        return {
+          left: `${calendarContext.cord.x}px`,
+          top: `${calendarContext.cord.y}px`,
+        };
+    });
+
+    return () => {
+      setContextPosition({
         left: `${calendarContext.cord.x}px`,
         top: `${calendarContext.cord.y}px`,
-      }}
-      className="context_menu"
-    >
+      });
+    };
+  }, [calendarContext.cord.x, calendarContext.cord.y, setContextPosition]);
+
+  useOutsideAlerter(wrapperRef, hideContextMenu);
+  return (
+    <div ref={wrapperRef} style={contextPosition} className="context_menu">
       <ul className="context_menu_list">
         <li>{settings.title}</li>
         {settings.options.map((item, i) => (

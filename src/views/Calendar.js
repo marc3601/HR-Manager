@@ -1,10 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import "./Calendar.scss";
 import ViewHeader from "../components/ViewHeader";
 import arrow_right from "../assets/arrow_right.png";
 import arrow_left from "../assets/arrow_left.png";
-import { months, getCurrentMonth, getCurrentDay, renderDaysOff, daysNames } from "../utilities/viewsData";
+import {
+  months,
+  getCurrentMonth,
+  getCurrentDay,
+  renderDaysOff,
+  daysNames,
+} from "../utilities/viewsData";
 import useEventListener from "../utilities/useEventListener";
 import ContextMenu from "../components/ContextMenu";
 import {
@@ -18,17 +24,17 @@ import {
 
 const calendarContextManuSettings = {
   title: "Dodaj zdarzenie",
-  options: [
-    "Urlop wypoczynkowy",
-    "Chorobowe",
-    "Urlop bezpłatny"
-  ]
-}
+  options: ["Urlop wypoczynkowy", "Chorobowe", "Urlop bezpłatny"],
+};
 
 const Calendar = () => {
-  const dispatch = useDispatch();
   const calendarContext = useSelector((state) => state.calendar_context);
   const currentM = useSelector((state) => state.current_month);
+  const [contextPosition, setContextPosition] = useState({
+    left: `${calendarContext.cord.x}px`,
+    top: `${calendarContext.cord.y}px`,
+  });
+  const dispatch = useDispatch();
   const Arrows = ["39", "ArrowRight", "37", "ArrowLeft"];
 
   const keyPressHandler = ({ key }) => {
@@ -80,8 +86,13 @@ const Calendar = () => {
           </div>{" "}
           <div className="calendar_grid">
             <div className="days_names">
-              {daysNames.map((day,i)=> (
-                <div key={i} className="grid_item">{day.fullName}</div>
+              {daysNames.map((day, i) => (
+                <div
+                  key={i}
+                  className={`grid_item ${i === 5 || i === 6 ? "dayoff" : ""}`}
+                >
+                  {day.fullName}
+                </div>
               ))}
             </div>{" "}
             <div className={`days_numbers`}>
@@ -91,7 +102,6 @@ const Calendar = () => {
                 let holidayCheck = renderDaysOff(
                   months[currentM].intialDay
                 ).find((element) => element === data);
-
                 return (
                   <div
                     onContextMenu={(e) => showContextMenu(e)}
@@ -103,11 +113,19 @@ const Calendar = () => {
                       data === getCurrentDay(currentM, getCurrentMonth())
                         ? "today"
                         : ""
-                    }  ${holidayCheck ? "dayoff_number" : ""}`}
+                    }${holidayCheck ? "dayoff_number" : ""} ${
+                      calendarContext.show && calendarContext.targetID === i
+                        ? "active_context"
+                        : ""
+                    }`}
                   >
                     {data}{" "}
                     {calendarContext.show && calendarContext.targetID === i && (
-                      <ContextMenu settings={calendarContextManuSettings} />
+                      <ContextMenu
+                        contextPosition={contextPosition}
+                        settings={calendarContextManuSettings}
+                        setContextPosition={setContextPosition}
+                      />
                     )}
                   </div>
                 );
