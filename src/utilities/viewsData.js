@@ -44,8 +44,51 @@ export const getCurrentDay = (userChoice, currentMonth) => {
     if (userChoice === currentMonth) {
         return d.getDate();
     } else return
-
 };
+
+export const renderDaysOff = (initialDay = 1) => {
+    let initialDays = [1, 2, 3, 4, 5, 6, 7];
+    let reversed = [...initialDays].reverse();
+    let initialDayOff = initialDays[reversed.indexOf(initialDay)];
+    let arr = [];
+    for (let i = 0; i < 5; i++) {
+      arr.push(initialDayOff);
+      initialDayOff += 7;
+    }
+    return arr;
+  };
+
+export const daysNames = [
+    {
+        fullName: "Poniedziałek",
+        shortName: "Pn"
+    },
+    {
+        fullName: "Wtorek",
+        shortName: "Wt"
+    },
+    {
+        fullName: "Środa",
+        shortName: "Śr"
+    },
+    {
+        fullName: "Czwartek",
+        shortName: "Czw"
+    },
+    {
+        fullName: "Piątek",
+        shortName: "Pt"
+    },
+    {
+        fullName: "Sobota",
+        shortName: "Sb"
+    },
+    {
+        fullName: "Niedziela",
+        shortName: "Nd"
+    },
+
+]
 
 export const months = [
     {

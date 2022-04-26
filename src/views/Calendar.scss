@@ -1,89 +1,107 @@
 @import "../utilities/variables";
 $initial_day: 1;
 .calendar_container {
-    .calendar_main {
+  .calendar_main {
+    padding: 1rem;
+    border-top: 2px solid $divider_color;
+    .calendar {
+      width: 100%;
+      border-radius: 10px;
+      margin-top: 1rem;
+      outline: 1px solid $main_color;
+      .calendar_month {
         padding: 1rem;
-        border-top: 2px solid $divider_color;
-        .calendar {
-            width: 100%;
-            border-radius: 10px;
-            margin-top: 1rem;
-            outline: 1px solid $main_color;
-            .calendar_month {
-                padding: 1rem;
-                display: flex;
-                align-items: center;
-                border-top-left-radius: 10px;
-                border-top-right-radius: 10px;
-                justify-content: space-between;
-                background-color: $main_color;
-                color: white;
-                .month_left,
-                .month_right {
-                    cursor: pointer;
-                }
-                .month_name {
-                    text-align: center;
-                }
-            }
-            .calendar_grid {
-                .days_names {
-                    display: grid;
-                    grid-template-columns: repeat(7, 1fr);
-                    grid-template-rows: 1fr;
-                    gap: 0px 0px;
-                    grid-template-areas: ". . . . . . .";
-                    .grid_item {
-                        padding: 1rem;
-                        text-align: center;
-                    }
-                    .dayoff {
-                        background-color: rgb(209, 209, 209);
-                    }
-                    outline: 1px solid $main_color;
-                }
-                .days_numbers {
-                    display: grid;
-                    position: relative;
-                    z-index: 0;
-                    grid-template-columns: repeat(7, 1fr);
-                    grid-template-rows: repeat(1, 1fr);
-                    gap: 0px 0px;
-                    grid-template-areas:
-                        ". . . . . . ."
-                        ". . . . . . ."
-                        ". . . . . . ."
-                        ". . . . . . ."
-                        ". . . . . . ."
-                        ". . . . . . .";
-                    .grid_item_number {
-                        position: relative;
-                        padding: 1rem;
-                        text-align: center;
-                        font-size: 2rem;
-                        cursor: pointer;
-                        &:hover {
-                            background-color: $hover_color;
-                            color: white;
-                        }
-                    }
-                    @for $initial_day from 1 through 7 {
-                        .initial_day_#{$initial_day}:first-child {
-                            grid-column: $initial_day;
-                        }
-                    }
-
-                    .today {
-                        outline: 3px solid red;
-                        background-color: rgb(196, 235, 248);
-                    }
-
-                    .dayoff_number {
-                        color: red;
-                        font-size: 2rem;
-                    }
-                }
-            }
+        display: flex;
+        align-items: center;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+        justify-content: space-between;
+        background-color: $main_color;
+        color: white;
+        .month_left,
+        .month_right {
+          cursor: pointer;
         }
+        .month_name {
+          text-align: center;
+        }
+      }
+      .calendar_grid {
+        .days_names {
+          display: grid;
+          grid-template-columns: repeat(7, 1fr);
+          grid-template-rows: 1fr;
+          gap: 0px 0px;
+          .grid_item {
+            padding: 1rem;
+            text-align: center;
+          }
+          .dayoff {
+            background-color: rgb(209, 209, 209);
+          }
+          outline: 1px solid $main_color;
+        }
+        .days_numbers {
+          display: grid;
+          position: relative;
+          z-index: 0;
+          grid-template-columns: repeat(7, 1fr);
+          grid-template-rows: repeat(1, 1fr);
+          gap: 0px 0px;
+          .grid_item_number,
+          .react-contextmenu-wrapper {
+            position: relative;
+            padding: 1rem;
+            text-align: center;
+            font-size: 2rem;
+            cursor: pointer;
+            &:hover {
+              background-color: $hover_color;
+              color: white;
+            }
+          }
+          .react-contextmenu {
+            z-index: 1;
+            opacity: 0.97;
+            -webkit-box-shadow: 10px 12px 16px -10px rgba(66, 68, 90, 1);
+            -moz-box-shadow: 10px 12px 16px -10px rgba(66, 68, 90, 1);
+            box-shadow: 10px 12px 16px -10px rgba(66, 68, 90, 1);
+            .react-contextmenu-item {
+              z-index: 2;
+              padding: 0.8rem 1.5rem;
+              background-color: $main_color;
+              color: white;
+              cursor: pointer;
+              &:hover {
+                background-color: $hover_color;
+              }
+              &:first-child {
+                background-color: rgb(1, 33, 120);
+                cursor: auto;
+              }
+            }
+          }
+
+          @for $initial_day from 1 through 7 {
+            .initial_day_#{$initial_day}:first-child {
+              grid-column: $initial_day;
+            }
+          }
+          .today {
+            outline: 3px solid red;
+            background-color: rgb(196, 235, 248);
+          }
+
+          .dayoff_number {
+            color: red;
+            font-size: 2rem;
+          }
+          .active_context {
+            background-color: $hover_color;
+            color: white;
+          }
+        }
+      }
     }
+  }
 }
