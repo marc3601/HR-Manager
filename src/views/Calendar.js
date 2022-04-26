@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import "./Calendar.scss";
+import { ContextMenu, MenuItem, ContextMenuTrigger } from "react-contextmenu";
 import ViewHeader from "../components/ViewHeader";
 import arrow_right from "../assets/arrow_right.png";
 import arrow_left from "../assets/arrow_left.png";
@@ -12,11 +13,6 @@ import {
   daysNames,
 } from "../utilities/viewsData";
 import useEventListener from "../utilities/useEventListener";
-import ContextMenu from "../components/ContextMenu";
-import {
-  hideContextMenu,
-  toogleContextMenu,
-} from "../features/calendarContextSlice";
 import {
   setCurrentMonthDown,
   setCurrentMonthUp,
@@ -30,10 +26,6 @@ const calendarContextManuSettings = {
 const Calendar = () => {
   const calendarContext = useSelector((state) => state.calendar_context);
   const currentM = useSelector((state) => state.current_month);
-  const [contextPosition, setContextPosition] = useState({
-    left: `${calendarContext.cord.x}px`,
-    top: `${calendarContext.cord.y}px`,
-  });
   const dispatch = useDispatch();
   const Arrows = ["39", "ArrowRight", "37", "ArrowLeft"];
 
@@ -52,22 +44,11 @@ const Calendar = () => {
   useEventListener("keydown", keyPressHandler);
 
   const previousMonth = () => {
-    dispatch(hideContextMenu());
     dispatch(setCurrentMonthDown());
   };
 
   const nextMonth = () => {
-    dispatch(hideContextMenu());
     dispatch(setCurrentMonthUp());
-  };
-
-  const showContextMenu = (e) => {
-    e.preventDefault();
-    let rect = e.target.getBoundingClientRect();
-    let x = e.clientX - rect.left;
-    let y = e.clientY - rect.top;
-    let id = e.target.id;
-    dispatch(toogleContextMenu({ targetID: id, cord: { x: x, y: y } }));
   };
 
   return (
@@ -103,31 +84,35 @@ const Calendar = () => {
                   months[currentM].intialDay
                 ).find((element) => element === data);
                 return (
-                  <div
-                    onContextMenu={(e) => showContextMenu(e)}
-                    key={i}
-                    id={i}
-                    className={`grid_item_number initial_day_${
-                      months[currentM].intialDay
-                    } ${
-                      data === getCurrentDay(currentM, getCurrentMonth())
-                        ? "today"
-                        : ""
-                    }${holidayCheck ? "dayoff_number" : ""} ${
-                      calendarContext.show && calendarContext.targetID === i
-                        ? "active_context"
-                        : ""
-                    }`}
-                  >
-                    {data}{" "}
-                    {calendarContext.show && calendarContext.targetID === i && (
-                      <ContextMenu
-                        contextPosition={contextPosition}
-                        settings={calendarContextManuSettings}
-                        setContextPosition={setContextPosition}
-                      />
-                    )}
-                  </div>
+                  <React.Fragment key={`${i}frm`}>
+                    <ContextMenuTrigger
+                      key={`id${i}`}
+                      id={`id${i}`}
+                      attributes={{
+                        className: `grid_item_number initial_day_${
+                          months[currentM].intialDay
+                        } ${
+                          data === getCurrentDay(currentM, getCurrentMonth())
+                            ? "today"
+                            : ""
+                        }${holidayCheck ? "dayoff_number" : ""} ${
+                          calendarContext.show && calendarContext.targetID === i
+                            ? "active_context"
+                            : ""
+                        }`,
+                      }}
+                    >
+                      {data}{" "}
+                    </ContextMenuTrigger>
+                    <ContextMenu key={`id${i}a`} id={`id${i}`}>
+                      <MenuItem
+                        key={"a1"}
+                      >{`${data} ${months[currentM].name}`}</MenuItem>
+                      {calendarContextManuSettings.options.map((item, i) => (
+                        <MenuItem key={"a2" + i}>{item}</MenuItem>
+                      ))}
+                    </ContextMenu>
+                  </React.Fragment>
                 );
               })}{" "}
             </div>{" "}
