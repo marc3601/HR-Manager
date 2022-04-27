@@ -17,7 +17,7 @@ import {
   setCurrentMonthDown,
   setCurrentMonthUp,
 } from "../features/currentMonthSlice";
-
+import { toogleContextMenu } from "../features/calendarContextSlice";
 const calendarContextManuSettings = {
   title: "Dodaj zdarzenie",
   options: ["Urlop wypoczynkowy", "Chorobowe", "Urlop bezpłatny"],
@@ -45,14 +45,22 @@ const Calendar = () => {
 
   const previousMonth = () => {
     dispatch(setCurrentMonthDown());
+    dispatch(toogleContextMenu());
+    setTimeout(() => {
+      dispatch(toogleContextMenu());
+    }, 20);
   };
 
   const nextMonth = () => {
     dispatch(setCurrentMonthUp());
+    dispatch(toogleContextMenu());
+    setTimeout(() => {
+      dispatch(toogleContextMenu());
+    }, 20);
   };
 
   return (
-    <div className="calendar_container" onKeyDown={() => console.log("ello")}>
+    <div className="calendar_container">
       <ViewHeader title="Kalendarz" buttonTitle="Dodaj zdarzenie" />
       <div className="calendar_main">
         <div className="calendar">
@@ -104,14 +112,16 @@ const Calendar = () => {
                     >
                       {data}{" "}
                     </ContextMenuTrigger>
-                    <ContextMenu key={`id${i}a`} id={`id${i}`}>
-                      <MenuItem
-                        key={"a1"}
-                      >{`${data} ${months[currentM].name}`}</MenuItem>
-                      {calendarContextManuSettings.options.map((item, i) => (
-                        <MenuItem key={"a2" + i}>{item}</MenuItem>
-                      ))}
-                    </ContextMenu>
+                    {!calendarContext && (
+                      <ContextMenu key={`id${i}a`} id={`id${i}`}>
+                        <MenuItem
+                          key={"a1"}
+                        >{`${data} ${months[currentM].name}`}</MenuItem>
+                        {calendarContextManuSettings.options.map((item, i) => (
+                          <MenuItem key={"a2" + i}>{item}</MenuItem>
+                        ))}
+                      </ContextMenu>
+                    )}
                   </React.Fragment>
                 );
               })}{" "}
