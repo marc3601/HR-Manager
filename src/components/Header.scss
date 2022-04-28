@@ -1,24 +1,24 @@
 @import "../utilities/variables";
 
 .main {
-    padding: 1rem;
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  .main_left {
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    .main_left {
-        display: flex;
-        align-items: center;
-        .logo_link {
-            text-decoration: none;
-            .main_logo {
-                color: $logo_color;
-                sup {
-                    font-size: 1rem;
-                }
-            }
+    .logo_link {
+      text-decoration: none;
+      .main_logo {
+        color: $logo_color;
+        sup {
+          font-size: 1rem;
         }
-        .main_title {
-            margin-left: 2rem;
-        }
+      }
     }
+    .main_title {
+      margin-left: 2rem;
+    }
+  }
 }

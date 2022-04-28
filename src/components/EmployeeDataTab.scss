@@ -1,0 +1,24 @@
+@import "../utilities/variables";
+.data_tab_container {
+  margin: 1rem;
+  padding: 0.5rem;
+  display: inline-flex;
+  flex-shrink: inherit;
+  outline: 1px solid $main_color;
+  border-radius: 10px;
+  box-shadow: 9px 8px 12px -9px #42445a;
+  h4 {
+    text-decoration: underline;
+  }
+  .data_tab_info > *,
+  .data_tab_leave > * {
+    padding: 0.5rem;
+  }
+  .data_tab_leave {
+    margin-left: 2rem;
+    .leave_left {
+      text-align: center;
+      font-size: 2.8rem;
+    }
+  }
+}

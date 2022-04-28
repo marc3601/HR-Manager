@@ -1,43 +1,43 @@
 @import "../utilities/variables";
 table,
 tr td {
-    border-collapse: collapse;
-    width: 100%;
-    padding: 0.8rem;
+  border-collapse: collapse;
+  width: 100%;
+  padding: 0.8rem;
 }
 thead {
-    color: white;
-    td {
-        cursor: pointer;
-        &:hover {
-            background-color: $hover_color;
-        }
-        .icon {
-            display: inline-block;
-            padding-left: 8px;
-            img {
-                vertical-align: middle;
-            }
-        }
+  color: white;
+  td {
+    cursor: pointer;
+    &:hover {
+      background-color: $hover_color;
     }
-    .activeTab {
-        background-color: $hover_color;
+    .icon {
+      display: inline-block;
+      padding-left: 8px;
+      img {
+        vertical-align: middle;
+      }
     }
+  }
+  .activeTab {
+    background-color: $hover_color;
+  }
 }
 tbody {
-    display: block;
-    min-height: 40vh;
-    overflow: auto;
+  display: block;
+  min-height: 40vh;
+  overflow: auto;
 }
 thead,
 tbody tr {
-    display: table;
-    width: 100%;
-    table-layout: fixed;
+  display: table;
+  width: 100%;
+  table-layout: fixed;
 }
 tr:nth-child(even) {
-    background-color: $table_rows;
+  background-color: $table_rows;
 }
 thead {
-    background-color: $main_color;
+  background-color: $main_color;
 }
