@@ -1,7 +1,7 @@
 import React from "react";
 import { useLocation, Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { invert } from "../features/sideMenuSlice";
+import { toogle } from "../features/sideMenuSlice";
 import "./TopBar.scss";
 import { itemsData } from "../utilities/viewsData";
 const TopBar = () => {
@@ -16,7 +16,7 @@ const TopBar = () => {
   return (
     <div className="topbar_container">
       <div className="burger_menu">
-        <div onClick={() => dispatch(invert())} className="burger">
+        <div onClick={() => dispatch(toogle())} className="burger">
           <div className="bar1"></div>
           <div className="bar2"></div>
           <div className="bar3"></div>
@@ -25,7 +25,7 @@ const TopBar = () => {
       <nav className="breadcrumb_container">
         <ul className="breadcrumb">
           <Link
-            onClick={() => menuBar && dispatch(invert())}
+            onClick={() => menuBar && dispatch(toogle())}
             className="main_page_return"
             to="/"
           >

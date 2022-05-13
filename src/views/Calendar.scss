@@ -59,7 +59,8 @@ $initial_day: 1;
             text-align: center;
             font-size: 2rem;
             cursor: pointer;
-            &:hover {
+            &:hover,
+            &:focus {
               background-color: $hover_color;
               color: white;
             }

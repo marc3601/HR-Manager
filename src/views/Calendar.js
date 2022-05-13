@@ -117,7 +117,11 @@ const Calendar = () => {
                       {data}{" "}
                     </ContextMenuTrigger>
                     {!calendarContext && (
-                      <ContextMenu key={`id${i}a`} id={`id${i}`}>
+                      <ContextMenu
+                        className={`id${i + 1}`}
+                        key={`id${i}a`}
+                        id={`id${i}`}
+                      >
                         <MenuItem
                           key={"a1"}
                         >{`${data} ${months[currentM].name}`}</MenuItem>

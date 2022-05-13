@@ -1,13 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { invert } from "../features/sideMenuSlice";
+import { toogle } from "../features/sideMenuSlice";
 import "./MenuItem.scss";
 const MenuItem = (props) => {
   const menuBar = useSelector((state) => state.side_menu);
   const dispatch = useDispatch();
   const hideSideMenu = () => {
-    menuBar && dispatch(invert());
+    menuBar && dispatch(toogle());
   };
   return (
     <Link onClick={hideSideMenu} className="item_link" to={props.link}>
