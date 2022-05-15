@@ -13,6 +13,7 @@ import {
   getCurrentDay,
   renderDaysOff,
   daysNames,
+  calendarContextManuSettings,
 } from "../utilities/viewsData";
 import useEventListener from "../utilities/useEventListener";
 import {
@@ -20,10 +21,6 @@ import {
   setCurrentMonthUp,
 } from "../features/currentMonthSlice";
 import { toogleContextMenu } from "../features/calendarContextSlice";
-const calendarContextManuSettings = {
-  title: "Dodaj zdarzenie",
-  options: ["Urlop wypoczynkowy", "Chorobowe", "Urlop bezpłatny"],
-};
 
 const Calendar = () => {
   const calendarContext = useSelector((state) => state.calendar_context);
@@ -111,17 +108,13 @@ const Calendar = () => {
                           data === getCurrentDay(currentM, getCurrentMonth())
                             ? "today"
                             : ""
-                        }${holidayCheck ? "dayoff_number" : ""}`,
+                        } ${holidayCheck ? "dayoff_number" : ""}`,
                       }}
                     >
                       {data}{" "}
                     </ContextMenuTrigger>
                     {!calendarContext && (
-                      <ContextMenu
-                        className={`id${i + 1}`}
-                        key={`id${i}a`}
-                        id={`id${i}`}
-                      >
+                      <ContextMenu key={`id${i}a`} id={`id${i}`}>
                         <MenuItem
                           key={"a1"}
                         >{`${data} ${months[currentM].name}`}</MenuItem>

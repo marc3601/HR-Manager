@@ -58,6 +58,11 @@ export const renderDaysOff = (initialDay = 1) => {
   return arr;
 };
 
+export const calendarContextManuSettings = {
+  title: "Dodaj zdarzenie",
+  options: ["Urlop wypoczynkowy >>", "Chorobowe >>", "Urlop bezpłatny >>"],
+};
+
 export const daysNames = [
   {
     fullName: "Poniedziałek",
