@@ -17,7 +17,7 @@ function App() {
           <Route path="calendar" element={<Calendar />} />
           <Route path="link2" element={<h1>Link2</h1>} />
           <Route path="link4" element={<h1>Link4</h1>} />
-          <Route path="/*" element={<h1>Nothing's here!</h1>} />
+          <Route path="/*" element={<h1>Nothing's here yet!</h1>} />
         </Routes>
       </MainSection>
     </div>

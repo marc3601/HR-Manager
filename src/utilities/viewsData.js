@@ -1,16 +1,18 @@
 import people from "../assets/people.png";
 import calendar from "../assets/calendar.png";
 import home from "../assets/home.png";
+import timeline from "../assets/timeline.png";
 
 // Menu items
 export const itemsData = [
   { name: "Strona główna", logo: home, link: "/" },
   { name: "Pracownicy", logo: people, link: "/employes" },
   { name: "Kalendarz", logo: calendar, link: "/calendar" },
-  { name: "Title4", logo: people, link: "/link4" },
+  { name: "Oś czasu", logo: timeline, link: "/timeline" },
 ];
 
-//Table dummy data
+//Table dummy data. It will be generated on backend based on data fetched
+// from database.
 
 export const tableData = {
   tableHead: ["Imię", "Nazwisko", "Stanowisko", "Miasto"],
@@ -34,6 +36,34 @@ export const tableData = {
   ],
 };
 
+//This will also be most likely be generated on backend
+
+export const daysOffData = [
+  {
+    surname: "Czaja",
+    name: "Marcin",
+    daysOffLastYear: 15,
+    daysOffThisYear: 4,
+  },
+  {
+    surname: "Majewska",
+    name: "Agnieszka",
+    daysOffLastYear: 12,
+    daysOffThisYear: 5,
+  },
+  {
+    surname: "Kubiak",
+    name: "Daniel",
+    daysOffLastYear: 12,
+    daysOffThisYear: 5,
+  },
+  {
+    surname: "Kubiak",
+    name: "Daniel",
+    daysOffLastYear: 12,
+    daysOffThisYear: 5,
+  },
+];
 export const getCurrentMonth = () => {
   const d = new Date();
   return d.getMonth();

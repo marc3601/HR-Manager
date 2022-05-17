@@ -1,8 +1,8 @@
 import React from "react";
 import "./MainButton.scss";
-const MainButton = ({ text }) => {
+const MainButton = ({ text, onClick }) => {
   return (
-    <button className="main_button">
+    <button onClick={onClick} className="main_button">
       <span className="plus_sign">+ </span>
       <span className="button_text">{text}</span>
     </button>
