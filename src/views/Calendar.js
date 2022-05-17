@@ -3,6 +3,8 @@ import { useSelector, useDispatch } from "react-redux";
 import "./Calendar.scss";
 import { ContextMenu, MenuItem, ContextMenuTrigger } from "react-contextmenu";
 import ViewHeader from "../components/ViewHeader";
+import SearchBar from "../components/SearchBar";
+import EmployeeDataTab from "../components/EmployeeDataTab";
 import arrow_right from "../assets/arrow_right.png";
 import arrow_left from "../assets/arrow_left.png";
 import {
@@ -11,6 +13,7 @@ import {
   getCurrentDay,
   renderDaysOff,
   daysNames,
+  calendarContextManuSettings,
 } from "../utilities/viewsData";
 import useEventListener from "../utilities/useEventListener";
 import {
@@ -18,10 +21,6 @@ import {
   setCurrentMonthUp,
 } from "../features/currentMonthSlice";
 import { toogleContextMenu } from "../features/calendarContextSlice";
-const calendarContextManuSettings = {
-  title: "Dodaj zdarzenie",
-  options: ["Urlop wypoczynkowy", "Chorobowe", "Urlop bezpłatny"],
-};
 
 const Calendar = () => {
   const calendarContext = useSelector((state) => state.calendar_context);
@@ -62,6 +61,12 @@ const Calendar = () => {
   return (
     <div className="calendar_container">
       <ViewHeader title="Kalendarz" buttonTitle="Dodaj zdarzenie" />
+      <div className="calendar_search">
+        <SearchBar />
+      </div>
+      <div className="calendar_data_tab">
+        <EmployeeDataTab />
+      </div>
       <div className="calendar_main">
         <div className="calendar">
           <div className="calendar_month">
@@ -103,11 +108,7 @@ const Calendar = () => {
                           data === getCurrentDay(currentM, getCurrentMonth())
                             ? "today"
                             : ""
-                        }${holidayCheck ? "dayoff_number" : ""} ${
-                          calendarContext.show && calendarContext.targetID === i
-                            ? "active_context"
-                            : ""
-                        }`,
+                        } ${holidayCheck ? "dayoff_number" : ""}`,
                       }}
                     >
                       {data}{" "}

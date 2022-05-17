@@ -1,50 +1,50 @@
 @import "../utilities/variables";
 .topbar_container {
-    background-color: $main_color;
-    color: white;
-    padding: 0.8rem;
-    display: flex;
-    align-items: center;
-    .burger_menu {
-        .burger {
-            cursor: pointer;
-            .bar1,
-            .bar2,
-            .bar3 {
-                width: 2.2rem;
-                height: 0.4rem;
-                background-color: white;
-                border-radius: 10px;
-                margin-bottom: 0.2rem;
-            }
-        }
+  background-color: $main_color;
+  color: white;
+  padding: 0.8rem;
+  display: flex;
+  align-items: center;
+  .burger_menu {
+    .burger {
+      cursor: pointer;
+      .bar1,
+      .bar2,
+      .bar3 {
+        width: 2.2rem;
+        height: 0.4rem;
+        background-color: white;
+        border-radius: 10px;
+        margin-bottom: 0.2rem;
+      }
     }
-    .breadcrumb_container {
-        margin-left: 1rem;
-        .breadcrumb {
-            display: flex;
-            list-style: none;
-            .main_page_return {
-                color: white;
-                text-decoration: none;
-            }
-            .breadcrumb-item,
-            .breadcrumb-item-text {
-                cursor: pointer;
-                &:hover {
-                    text-decoration: underline;
-                }
-            }
-            .breadcrumb-item,
-            .breadcrumb-item-secondary {
-                margin-left: 0.8rem;
-            }
-            .breadcrumb-item-secondary {
-                display: flex;
-                .breadcrumb-arrow {
-                    margin-right: 0.8rem;
-                }
-            }
+  }
+  .breadcrumb_container {
+    margin-left: 1rem;
+    .breadcrumb {
+      display: flex;
+      list-style: none;
+      .main_page_return {
+        color: white;
+        text-decoration: none;
+      }
+      .breadcrumb-item,
+      .breadcrumb-item-text {
+        cursor: pointer;
+        &:hover {
+          text-decoration: underline;
         }
+      }
+      .breadcrumb-item,
+      .breadcrumb-item-secondary {
+        margin-left: 0.8rem;
+      }
+      .breadcrumb-item-secondary {
+        display: flex;
+        .breadcrumb-arrow {
+          margin-right: 0.8rem;
+        }
+      }
     }
+  }
 }

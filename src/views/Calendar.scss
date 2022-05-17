@@ -1,9 +1,13 @@
 @import "../utilities/variables";
 $initial_day: 1;
 .calendar_container {
-  .calendar_main {
+  .calendar_search {
     padding: 1rem;
     border-top: 2px solid $divider_color;
+    border-bottom: 2px solid $divider_color;
+  }
+  .calendar_main {
+    padding: 0 1rem 1rem;
     .calendar {
       width: 100%;
       border-radius: 10px;
@@ -55,7 +59,8 @@ $initial_day: 1;
             text-align: center;
             font-size: 2rem;
             cursor: pointer;
-            &:hover {
+            &:hover,
+            &:focus {
               background-color: $hover_color;
               color: white;
             }
