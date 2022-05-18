@@ -1,6 +1,9 @@
 import React from "react";
+import { useDispatch } from "react-redux";
+import { toogleLoader } from "../features/loaderSlice";
 import "./User.scss";
 const User = () => {
+  const dispatch = useDispatch();
   return (
     <div className="user_container">
       <div className="left_container">
@@ -10,7 +13,10 @@ const User = () => {
         </div>
       </div>
       <div className="right_container">
-        <div className="profile_pic"></div>
+        <div
+          onClick={() => dispatch(toogleLoader())}
+          className="profile_pic"
+        ></div>
       </div>
     </div>
   );

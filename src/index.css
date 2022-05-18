@@ -8,3 +8,6 @@
 body {
   overflow-x: hidden;
 }
+.body_overflow {
+  overflow: hidden;
+}
