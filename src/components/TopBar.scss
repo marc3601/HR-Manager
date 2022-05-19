@@ -31,19 +31,19 @@
       .breadcrumb-item,
       .breadcrumb-item-text {
         cursor: pointer;
+        color: white;
+        text-decoration: none;
         &:hover {
           text-decoration: underline;
         }
       }
       .breadcrumb-item,
+      .breadcrumb-arrow,
       .breadcrumb-item-secondary {
         margin-left: 0.8rem;
       }
       .breadcrumb-item-secondary {
         display: flex;
-        .breadcrumb-arrow {
-          margin-right: 0.8rem;
-        }
       }
     }
   }

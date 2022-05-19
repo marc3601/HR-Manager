@@ -6,13 +6,23 @@ import "./TopBar.scss";
 import { itemsData } from "../utilities/viewsData";
 const TopBar = () => {
   const menuBar = useSelector((state) => state.side_menu);
+
   const dispatch = useDispatch();
   const location = useLocation();
+
   const viewTitleFilter = itemsData.filter(
     (item) => item.link === location.pathname
   );
-  const viewTitle = viewTitleFilter[0]?.name ? viewTitleFilter[0].name : "";
+  const viewTitle = viewTitleFilter[0]?.name
+    ? { name: viewTitleFilter[0].name, link: viewTitleFilter[0].link }
+    : "";
 
+  // const twoURLParams = () => {
+  //   const urlParamsArray = location.pathname.split("/");
+  //   return urlParamsArray.slice(1, urlParamsArray.length);
+  // };
+
+  // console.log(`No of url params is ${twoURLParams().length}`);
   return (
     <div className="topbar_container">
       <div className="burger_menu">
@@ -24,20 +34,31 @@ const TopBar = () => {
       </div>
       <nav className="breadcrumb_container">
         <ul className="breadcrumb">
-          <Link
-            onClick={() => menuBar && dispatch(toogle())}
-            className="main_page_return"
-            to="/"
-          >
-            <li className="breadcrumb-item">Strona główna</li>
-          </Link>
-          <li className="breadcrumb-item-secondary">
-            {viewTitle && viewTitle !== "Strona główna" && (
-              <span className="breadcrumb-arrow">&gt;</span>
+          <li className="breadcrumb-item">
+            <Link
+              onClick={() => menuBar && dispatch(toogle())}
+              to="/"
+              title="Strona główna"
+            >
+              <p className="breadcrumb-item-text">Strona główna</p>
+            </Link>
+          </li>
+          <li className="breadcrumb-arrow">
+            {" "}
+            {viewTitle && viewTitle.name !== "Strona główna" && (
+              <span>&gt;</span>
             )}
-            <p className="breadcrumb-item-text">
-              {viewTitle !== "Strona główna" && viewTitle}
-            </p>
+          </li>
+          <li className="breadcrumb-item">
+            <Link
+              onClick={() => menuBar && dispatch(toogle())}
+              to={viewTitle.link !== "/" && viewTitle.link}
+              title={viewTitle.name}
+            >
+              <p className="breadcrumb-item-text">
+                {viewTitle.name !== "Strona główna" && viewTitle.name}
+              </p>
+            </Link>
           </li>
         </ul>
       </nav>
