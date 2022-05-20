@@ -28,6 +28,11 @@
         color: white;
         text-decoration: none;
       }
+      .breadcrumb-item {
+        .breadcrumb-link {
+          text-decoration: none;
+        }
+      }
       .breadcrumb-item,
       .breadcrumb-item-text {
         cursor: pointer;
@@ -38,12 +43,8 @@
         }
       }
       .breadcrumb-item,
-      .breadcrumb-arrow,
-      .breadcrumb-item-secondary {
+      .breadcrumb-arrow {
         margin-left: 0.8rem;
-      }
-      .breadcrumb-item-secondary {
-        display: flex;
       }
     }
   }

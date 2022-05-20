@@ -1,28 +1,22 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useLocation, Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { toogle } from "../features/sideMenuSlice";
 import "./TopBar.scss";
 import { itemsData } from "../utilities/viewsData";
+import Breadcrumb from "../utilities/Breadcrumb";
 const TopBar = () => {
+  const [navItems, setNavItems] = useState([]);
   const menuBar = useSelector((state) => state.side_menu);
 
   const dispatch = useDispatch();
   const location = useLocation();
 
-  const viewTitleFilter = itemsData.filter(
-    (item) => item.link === location.pathname
-  );
-  const viewTitle = viewTitleFilter[0]?.name
-    ? { name: viewTitleFilter[0].name, link: viewTitleFilter[0].link }
-    : "";
+  useEffect(() => {
+    const topNav = new Breadcrumb(location, itemsData);
+    setNavItems(topNav.createItems());
+  }, [location]);
 
-  // const twoURLParams = () => {
-  //   const urlParamsArray = location.pathname.split("/");
-  //   return urlParamsArray.slice(1, urlParamsArray.length);
-  // };
-
-  // console.log(`No of url params is ${twoURLParams().length}`);
   return (
     <div className="topbar_container">
       <div className="burger_menu">
@@ -36,6 +30,7 @@ const TopBar = () => {
         <ul className="breadcrumb">
           <li className="breadcrumb-item">
             <Link
+              className="breadcrumb-link"
               onClick={() => menuBar && dispatch(toogle())}
               to="/"
               title="Strona główna"
@@ -43,23 +38,23 @@ const TopBar = () => {
               <p className="breadcrumb-item-text">Strona główna</p>
             </Link>
           </li>
-          <li className="breadcrumb-arrow">
-            {" "}
-            {viewTitle && viewTitle.name !== "Strona główna" && (
-              <span>&gt;</span>
-            )}
-          </li>
-          <li className="breadcrumb-item">
-            <Link
-              onClick={() => menuBar && dispatch(toogle())}
-              to={viewTitle.link !== "/" && viewTitle.link}
-              title={viewTitle.name}
-            >
-              <p className="breadcrumb-item-text">
-                {viewTitle.name !== "Strona główna" && viewTitle.name}
-              </p>
-            </Link>
-          </li>
+          {navItems.map((item, i) => (
+            <React.Fragment key={`${i}nv`}>
+              <li className="breadcrumb-arrow">
+                <span>&gt;</span>
+              </li>
+              <li className="breadcrumb-item">
+                <Link
+                  className="breadcrumb-link"
+                  onClick={() => menuBar && dispatch(toogle())}
+                  to={item.link}
+                  title={item.name}
+                >
+                  <p className="breadcrumb-item-text">{item.name}</p>
+                </Link>
+              </li>
+            </React.Fragment>
+          ))}
         </ul>
       </nav>
     </div>

@@ -10,7 +10,7 @@ export const itemsData = [
   { name: "Pracownicy", logo: people, link: "/employes" },
   { name: "Kalendarz", logo: calendar, link: "/calendar" },
   { name: "Oś czasu", logo: timeline, link: "/timeline" },
-  { name: "Dodaj pracownika", link: "/calendar/add" },
+  { name: "Dodaj pracownika", link: "/employes/add" },
 ];
 
 //Table dummy data. It will be generated on backend based on requested data.
