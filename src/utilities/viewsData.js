@@ -4,16 +4,16 @@ import home from "../assets/home.png";
 import timeline from "../assets/timeline.png";
 
 // Menu items
+// Item is not rendered on sidebar if logo is absent.
 export const itemsData = [
   { name: "Strona główna", logo: home, link: "/" },
   { name: "Pracownicy", logo: people, link: "/employes" },
   { name: "Kalendarz", logo: calendar, link: "/calendar" },
   { name: "Oś czasu", logo: timeline, link: "/timeline" },
+  { name: "Dodaj pracownika", link: "/employes/add" },
 ];
 
-//Table dummy data. It will be generated on backend based on data fetched
-// from database.
-
+//Table dummy data. It will be generated on backend based on requested data.
 export const tableData = {
   tableHead: ["Imię", "Nazwisko", "Stanowisko", "Miasto"],
   tableData: [
@@ -36,8 +36,7 @@ export const tableData = {
   ],
 };
 
-//This will also be most likely be generated on backend
-
+//This will also be most likely generated on backend
 export const daysOffData = [
   {
     surname: "Czaja",

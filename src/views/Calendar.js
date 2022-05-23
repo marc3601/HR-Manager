@@ -21,6 +21,7 @@ import {
   setCurrentMonthUp,
 } from "../features/currentMonthSlice";
 import { toogleContextMenu } from "../features/calendarContextSlice";
+import MainButton from "../components/MainButton";
 
 const Calendar = () => {
   const calendarContext = useSelector((state) => state.calendar_context);
@@ -60,7 +61,9 @@ const Calendar = () => {
 
   return (
     <div className="calendar_container">
-      <ViewHeader title="Kalendarz" buttonTitle="Dodaj zdarzenie" />
+      <ViewHeader title="Kalendarz">
+        <MainButton text="Dodaj zdarzenie" />
+      </ViewHeader>
       <div className="calendar_search">
         <SearchBar />
       </div>

@@ -1,8 +1,10 @@
+@import "../utilities/variables";
 .view_top {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding-bottom: 1rem;
+  border-bottom: 2px solid $divider_color;
   .view_title_section {
     .view_title {
       font-size: 2rem;

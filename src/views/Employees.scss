@@ -1,13 +1,12 @@
 @import "../utilities/variables";
 .employees_container {
-    .employees_main {
-        padding: 1rem;
-        border-top: 2px solid $divider_color;
+  .employees_main {
+    padding: 1rem;
+  }
+  .employees_list {
+    padding: 1rem 1rem 1rem;
+    .list_table {
+      padding-top: 1rem;
     }
-    .employees_list {
-        padding: 1rem 1rem 1rem;
-        .list_table {
-            padding-top: 1rem;
-        }
-    }
+  }
 }

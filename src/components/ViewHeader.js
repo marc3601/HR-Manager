@@ -1,17 +1,12 @@
 import React from "react";
 import "./ViewHeader.scss";
-import MainButton from "../components/MainButton";
-const ViewHeader = ({ title, buttonTitle }) => {
+const ViewHeader = (props) => {
   return (
     <div className="view_top">
       <div className="view_title_section">
-        <h2 className="view_title">{title}</h2>
+        <h2 className="view_title">{props.title}</h2>
       </div>
-      {buttonTitle && (
-        <div className="view_button_section">
-          <MainButton text={buttonTitle} />
-        </div>
-      )}
+      <div className="view_secondary_section">{props.children}</div>
     </div>
   );
 };
