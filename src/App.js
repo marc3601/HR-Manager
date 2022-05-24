@@ -30,8 +30,6 @@ function App() {
           <Route path="employes" element={<Employees />} />
           <Route path="calendar" element={<Calendar />} />
           <Route exact path="employes/add" element={<AddEmployee />} />
-          <Route path="link2" element={<h1>Link2</h1>} />
-          <Route path="link4" element={<h1>Link4</h1>} />
           <Route path="/*" element={<h1>Nothing's here yet!</h1>} />
         </Routes>
       </MainSection>
