@@ -1,26 +1,18 @@
 @import "../utilities/variables";
 .addemployee_container {
   .addemployee_mandatory {
-    display: flex;
-    justify-content: space-around;
     outline: 1px solid $main_color;
     border-radius: 10px;
     box-shadow: 9px 8px 12px -9px #42445a;
     max-width: 1000px;
     margin: 1rem auto;
-    padding: 2rem 0;
-    .mandatory_right,
-    .mandatory_left {
-      flex-basis: 400px;
-      .addemployee_input_lebel {
-        display: block;
-        margin-bottom: 0.4rem;
-      }
-      .addemployee_imput {
-        display: block;
-        margin-bottom: 1rem;
-        padding: 0.4rem;
-        width: 80%;
+    padding: 2rem 0 2rem;
+    .addemployee_mandatory_flex {
+      display: flex;
+      justify-content: space-around;
+      .mandatory_right,
+      .mandatory_left {
+        flex-basis: 400px;
       }
     }
   }
