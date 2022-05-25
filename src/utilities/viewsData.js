@@ -36,6 +36,82 @@ export const tableData = {
   ],
 };
 
+//List of inputs in "Add employee view"
+const addEmployeeInputs = [
+  {
+    type: "text",
+    text: "Imię",
+    placeholder: "Podaj imię",
+    id: "add_name",
+  },
+  {
+    type: "number",
+    text: "PESEL",
+    placeholder: "Podaj pesel",
+    id: "add_pesel",
+  },
+  {
+    type: "text",
+    text: "Nazwisko",
+    placeholder: "Podaj nazwisko",
+    id: "add_surname",
+  },
+  {
+    type: "date",
+    text: "Data urodzenia",
+    id: "add_birth",
+  },
+  {
+    type: "text",
+    text: "Stanowisko",
+    placeholder: "Podaj stanowisko",
+    id: "add_position",
+  },
+  {
+    type: "date",
+    text: "Data zatrudnienia",
+    id: "add_hired",
+  },
+  {
+    type: "text",
+    text: "Miasto",
+    placeholder: "Podaj miasto",
+    id: "add_city",
+  },
+  {
+    type: "number",
+    text: "Kod",
+    placeholder: "Podaj kod pocztowy",
+    id: "add_code",
+  },
+  {
+    type: "text",
+    text: "Ulica",
+    placeholder: "Podaj ulicę",
+    id: "add_street",
+  },
+  {
+    type: "number",
+    text: "Numer domu",
+    placeholder: "Podaj numer domu",
+    id: "add_home",
+  },
+  {
+    type: "number",
+    text: "Mieszkanie",
+    placeholder: "Podaj mieszkanie",
+    id: "add_flat",
+  },
+];
+
+// This function divides array of inputs into two rows to show them in the UI.
+export const twoRowInputs = () => {
+  const half = Math.ceil(addEmployeeInputs.length / 2);
+  const firstHalf = addEmployeeInputs.slice(0, half);
+  const secondHalf = addEmployeeInputs.slice(half, addEmployeeInputs.length);
+  return { first: firstHalf, second: secondHalf };
+};
+
 //This will also be most likely generated on backend
 export const daysOffData = [
   {
