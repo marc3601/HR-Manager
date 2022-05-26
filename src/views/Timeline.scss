@@ -1,0 +1,13 @@
+@import "../utilities/variables";
+.timeline_container {
+  .timeline_section {
+    .timeline_axis {
+      position: relative;
+      left: 50%;
+      top: 2rem;
+      transform: translateX(-50%);
+      width: 0;
+      border-left: 3px solid $main_color;
+    }
+  }
+}
