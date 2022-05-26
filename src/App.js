@@ -7,6 +7,7 @@ import MainSection from "./components/MainSection";
 import Employees from "./views/Employees";
 import AddEmployee from "./views/AddEmployee";
 import Calendar from "./views/Calendar";
+import Timeline from "./views/Timeline";
 import Loader from "./components/Loader";
 import "./App.css";
 function App() {
@@ -28,8 +29,9 @@ function App() {
         <Routes>
           <Route path="/" element={<h1>Main page</h1>} />
           <Route path="employes" element={<Employees />} />
-          <Route path="calendar" element={<Calendar />} />
           <Route exact path="employes/add" element={<AddEmployee />} />
+          <Route path="calendar" element={<Calendar />} />
+          <Route path="timeline" element={<Timeline />} />
           <Route path="/*" element={<h1>Nothing's here yet!</h1>} />
         </Routes>
       </MainSection>
